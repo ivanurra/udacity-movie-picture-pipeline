@@ -8,7 +8,6 @@ on:
 
 env:
     NODE_VERSION: 'latest'
-    # SRC_DIR - path to the frontend root src folder
     SRC_DIR: '${{ github.workspace }}/src/frontend/'
     AWS_REGION: ''us-east-1'
 
@@ -57,7 +56,6 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
             
-            # Configure AWS credentials
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
