@@ -61,6 +61,8 @@ First we need to prep the AWS account with the necessary infrastructure for depl
 
 ### Create AWS infrastructure with Terraform
 
+You will need to ensure you are logged in with aws using aws configure
+
 1. Export your AWS credentials from the Cloud Gateway
 2. Use the commands below to run the Terraform and type `yes` after reviewing the expected changes
 
@@ -99,6 +101,18 @@ cd setup
 ```
 
 2. The script will download a tool, add the IAM user ARN to the authentication configuration, indicate a `Done` status, then it'll remove the tool
+
+### GitHub Secrets Environment
+
+These variables needs to be set within GitHub secrets.
+
+* `AWS_ACCESS_KEY`
+* `AWS_SECRET_KEY`
+
+* `KUBECONFIG` -- this would be the output of `cat ~/.kube/config` saved as a secret for the GitHub Action to use when running kubectl and kustomize commands.
+
+* `BACKEND_API_URL` -- This will come from the load balancer that was auto-setup when the backend finishes deploying. You will need the load balancers DNS name. You will need to prefix `http` or `https` to the value when saving it into the secrets environment. Probably just set it to a placeholder like `localhost` for the first build until the load balancer comes up and you can get the AWS generated DNS name for the backend load balancer that wont change.
+
 
 ## Dependencies
 
